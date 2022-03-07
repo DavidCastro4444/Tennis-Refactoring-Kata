@@ -2,54 +2,128 @@
 
 _Este proyecto es el resultado de aplicar técnicas de Refactoring y Code Smell, el proyecto raiz que se utilizo como base dle ejercício se puede encontrar en este [Repositorio](https://github.com/emilybache/Tennis-Refactoring-Kata) _
 
-## Para Empezar 🚀
+## Clean Code 🚀
 
-_El proyecto propuesto otorga diferentes clases que permiten indagar en técnicas de Refacotoring para tratar aplicar al mismo proyecto_t
+_Características relacionadas en el código para visualizar diferentes ejemplos en donde se muestra como tener un clean code_
 
-
-### Pre-Requisitos 📋
+### Código enfocado 📋
 
 _El proyecto corre bajo la versión java 8 mínimo para su compilación_
 
-## Ejecutando las pruebas ⚙️
-
-_El proyecto contiene una clase llamada TennisTest.java en donde se valida que su funcionamiento es el esperado_
-
-La forma para correr la prueba unitaria se aconseja que sea por consola 
-
 ```
-mvn test
-```
-
-### Analice las pruebas end-to-end 🔩
-
-_La prueba hace uso de arrayList con la finalidad de generar diferentes posibles escenarios, una vez dimensionado los puntajes, se hace uso del polimorfismo ppor medio de una interfaz que generar patrones de comportamiento para las clases: TennisGame1, TennisGame2, TennisGame3 y TennisGame4_
-
-```
-public interface TennisGame {
-    void wonPoint(String playerName);
-    String getScore();
+ @Override
+    public TennisResult getResult() {
+        if (game.receiverHasWon())
+            return new TennisResult("Win for " + game.receiver, "");
+        return this.nextResult.getResult();
+    }
 }
-```
-Esto se hace con cada clase
-```
-public class TennisGame1 implements TennisGame {
-```
 
-se hace uso de todas las clases de para hacer uso del método probatorio
-```
-public void checkAllScores(TennisGame game) {
-        int highestScore = Math.max(this.player1Score, this.player2Score);
-        for (int i = 0; i < highestScore; i++) {
-            if (i < this.player1Score)
-                game.wonPoint("player1");
-            if (i < this.player2Score)
-                game.wonPoint("player2");
-        }
-        assertEquals(this.expectedScore, game.getScore());
+class AdvantageServer implements ResultProvider {
+    private final TennisGame4 game;
+    private final ResultProvider nextResult;
+
+    public AdvantageServer(TennisGame4 game, ResultProvider nextResult) {
+        this.game = game;
+        this.nextResult = nextResult;
     }
 
-    @Test
+    @Override
+    public TennisResult getResult() {
+        if (game.serverHasAdvantage())
+            return new TennisResult("Advantage " + game.server, "");
+        return this.nextResult.getResult();
+    }
+```
+Se puede visualizar métodos confusoso y que evitan tener un código
+
+
+## Entendible ⚙️
+
+_Fragmentos del código en donde no es entendible el inicio de variables por ejemplo _
+
+```
+    private int p2;
+    private int p1;
+    private String p1N;
+    private String p2N;
+
+    public TennisGame3(String p1N, String p2N) {
+        this.p1N = p1N;
+        this.p2N = p2N;
+    }
+```
+
+### Escalable🔩
+
+_Debe ser escrito para el desarrollador y no para las maquinas_
+
+```
+ @java.lang.Override
+    public String getScore() {
+        TennisResult result = new Deuce(
+                this, new GameServer(
+                        this, new GameReceiver(
+                                this, new AdvantageServer(
+                                        this, new AdvantageReceiver(
+                                                this, new DefaultResult(this)))))).getResult();
+        return result.format();
+    }
+```
+Código limpio y claro para futuros arreglos
+
+
+### Duplicidad ⌨️
+_Funciones en donde no queda claro poder establer su uso con solo su nombre o firma_
+```
+ class Deuce implements ResultProvider {
+    private final TennisGame4 game;
+    private final ResultProvider nextResult;
+
+    public Deuce(TennisGame4 game, ResultProvider nextResult) {
+        this.game = game;
+        this.nextResult = nextResult;
+    }
+    
+    class GameServer implements ResultProvider {
+    private final TennisGame4 game;
+    private final ResultProvider nextResult;
+
+    public GameServer(TennisGame4 game, ResultProvider nextResult) {
+        this.game = game;
+        this.nextResult = nextResult;
+    }
+
+    @Override
+    public TennisResult getResult() {
+        if (game.serverHasWon())
+            return new TennisResult("Win for " + game.server, "");
+        return this.nextResult.getResult();
+    }
+}
+    
+    class GameReceiver implements ResultProvider {
+    private final TennisGame4 game;
+    private final ResultProvider nextResult;
+
+    public GameReceiver(TennisGame4 game, ResultProvider nextResult) {
+        this.game = game;
+        this.nextResult = nextResult;
+    }
+
+    @Override
+    public TennisResult getResult() {
+        if (game.receiverHasWon())
+            return new TennisResult("Win for " + game.receiver, "");
+        return this.nextResult.getResult();
+    }
+}
+```
+
+### Testeable⌨️
+_Existe una prueba unitaria en donde se testea todas las clases_
+```
+@Test
     public void checkAllScoresTennisGame1() {
         TennisGame1 game = new TennisGame1("player1", "player2");
         checkAllScores(game);
@@ -74,39 +148,15 @@ public void checkAllScores(TennisGame game) {
     }
 ```
 
+### Principio menor asombro⌨️
 
-### Técnicas Clase TennisGame1⌨️
-_Code smells_
+Nombres claros y precisos para métodos
+```
+public void wonPoint(String playerName) {
 
-Decompose Conditional en las líneas 26 a 71
+  public String getScore() {
+```
 
-Replace Conditional with Polymorphism
-
-Remove Assignments to Parameters
-
-
-### Técnicas Clase TennisGame2⌨️
-_Code smells_
-
-Consolidate Duplicate Conditional Fragments en las líneas 18 a 99
-
-Decompose Conditional en las líneas 26 a 71
-
-Replace Conditional with Polymorphism
-
-Remove Assignments to Parameters
-
-### Técnicas Clase TennisGame3⌨️
-
-_Code smells_
-
-Extract Variable
-
-### Técnicas Clase TennisGame4⌨️
-
-_Code smells_
-
-Extract Variable
 
 
 ## Autores ✒️
@@ -116,8 +166,6 @@ _Participantes_
 * **Trabajo Base** - *Trabajo Inicial* - [David Castro](https://github.com/DavidCastro4444)
 
 ## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
 
 ## Expresiones de Gratitud 🎁
 
@@ -130,5 +178,6 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 
 ---
 ⌨️ con ❤️ por [David Castro](https://github.com/DavidCastro4444) 😊
+
 
 
