@@ -64,17 +64,8 @@ Aquí se puede ver mala abstración de procesos, lógica redundante o capas falt
 subconjunto de los casos de uso que se consideran como primarios. Los casos de uso primarios son aquellos de mayor importancia o de mayor complejidad para el negocio. 
 Por último, las restricciones también son consideradas como drivers arquitecturales.
 
-✔️ Examinar arquitectura / 
-
-
-### Pruebas faltantes ⌨️
-_Se debe hacer prueba por los 2 métodos de la interfaz usada, evidenciandose a continuación_
-```
- public interface TennisGame {
-    void wonPoint(String playerName);
-    String getScore();
-}
-```
+### Examinar Arquitectura ⌨️
+![image](https://user-images.githubusercontent.com/26014448/161476625-4ab23db8-8a49-45f3-b761-72aa64f18215.png)
 
 ### Coverage ⌨️
 _Dado que faltan componentes por probar, se evidencia un coverage del 70%_
