@@ -67,9 +67,57 @@ Por último, las restricciones también son consideradas como drivers arquitectu
 ### Examinar Arquitectura ⌨️
 ![image](https://user-images.githubusercontent.com/26014448/161476625-4ab23db8-8a49-45f3-b761-72aa64f18215.png)
 
-### Coverage ⌨️
-_Dado que faltan componentes por probar, se evidencia un coverage del 70%_
+### Kata Tennis ⌨️
+_En las metricas que se plantearon al dar inicio al proyecto, se omitieron procesos al momento de diseñar una arquitectura. Estas de puden evidenciara continuacion_
 
+```
+public interface TennisGame {
+    void wonPoint(String playerName);
+    String getScore();
+}
+``` 
+una interfaz que genera un patron de comportamiento, en su diseño fue bien implementada, el impedimento parte de las clases que la implementan. Estas tienen comportamientos que corrompen el resultado esperado de las mismas
+
+Esto se hace con cada clase
+```
+public class TennisGame1 implements TennisGame {
+```
+
+se hace uso de todas las clases de para hacer uso del método probatorio
+```
+public void checkAllScores(TennisGame game) {
+        int highestScore = Math.max(this.player1Score, this.player2Score);
+        for (int i = 0; i < highestScore; i++) {
+            if (i < this.player1Score)
+                game.wonPoint("player1");
+            if (i < this.player2Score)
+                game.wonPoint("player2");
+        }
+        assertEquals(this.expectedScore, game.getScore());
+    }
+    @Test
+    public void checkAllScoresTennisGame1() {
+        TennisGame1 game = new TennisGame1("player1", "player2");
+        checkAllScores(game);
+    }
+    @Test
+    public void checkAllScoresTennisGame2() {
+        TennisGame2 game = new TennisGame2("player1", "player2");
+        checkAllScores(game);
+    }
+    @Test
+    public void checkAllScoresTennisGame3() {
+        TennisGame3 game = new TennisGame3("player1", "player2");
+        checkAllScores(game);
+    }
+    @Test
+    public void checkAllScoresTennisGame4() {
+        TennisGame game = new TennisGame4("player1", "player2");
+        checkAllScores(game);
+    }
+```
+
+El proyecto maneja una deuda de arquitectura muy pequeña, dado la complejidad del mismo, se omiten escenarios de recoleccion, puesto que el proyecto no contiene los requerimientos iniciales para realizar esos análisis
 ## Autores ✒️
 
 _Participantes_
