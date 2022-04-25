@@ -34,3 +34,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=DavidCastro4444_Tennis-Refactoring-Kata
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-2016]
+        node-version: [12.x, 14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@main
+      with: 
+        name: webpack artifacts
+        path: public        
