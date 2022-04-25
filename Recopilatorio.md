@@ -39,7 +39,7 @@ _El proyecto propuesto otorga diferentes clases que permiten indagar en técnica
     9. [Keep your codebase small](#keepYourCodebaseSmall)
     10. [Automate tests](#automateTest)
     11. [Write clean code](#writeCleanCode)
-  6. [Continuos Integration](#continuosIntegration)
+ 7. [Continuos Integration](#continuosIntegration)
     1. [CI usando GitHub Actions](#ciGitHub)
     2. [File YAML](#fileYaml)
     3. [Name](#name)
