@@ -50,6 +50,15 @@ _El proyecto propuesto otorga diferentes clases que permiten indagar en técnica
     8. [Build](#build)
     9. [Análisis de código](#analisisCodigo)
     10. [Pruebas](#pruebas)
+ 8. [Ciclos guiados por arquitectura](#ciclosGuiados)
+    1. [Definición practica](#definicionPractica)
+    2. [Métodos prácticos para aplicar a un ciclo guiado por arquitecturas.](#metodosPracticos)
+    3. [QAW](#qaw)
+    4. [ATAM](#atam)
+    5. [Kata Aplicación](#kata)
+ 8. [Autores](#autor)
+ 9. [Licencia](#licencia)
+ 10. [Agradecimientos](#gratitud)
   
 
 
@@ -714,42 +723,54 @@ jobs:
 ```
 [Tabla de Contenido](#indice)
 
-## Autores ✒️
+# Ciclos guiados por arquitectura <a name="ciclosGuiados"></a>
+
+Si tuviésemos que precisar un atributo que defina al software enestos tiempos, seguramente muchos coincidirían en que la complejidad es algo destacable. Esto se manifiesta en el volumen de los productos, utilización de productos COTS (Comercial off the self ), la integración a través de diferentes tipos de interfaces, la interoperabilidad entre diferentes plataformas y la conjunción de más de una tecnología para el desarrollo de un mismo producto. Dicha complejidad también se manifiesta a través de los requerimientos, tanto en cantidad como en los diferentes tipos y prioridades de las necesidades expresadas por las distintas personas interesadas por el producto bajo desarrollo.Muchos de estos requerimientos están expresando atributos que el software debe satisfacer para asegurar una adecuada calidad: desempeño, seguridad, mantenibilidad, etcétera. Estos atributos, reconocidos como “requerimientos no funcionales” o “atributos de calidad” son a veces la causa de importantes desvíos en el desarrollo o de serios problemas en la operación del producto, provocando insatisfacción de los usuarios y frustración de los equipos de desarrollo.
+
+Por otro lado si analizamos el problema desde la óptica de gestión de proyectos, la situación nos presenta un escenario también complejo: múltiples equipos trabajando en diferentes lugares con diferentes culturas, así como diferentes proveedores interactuando con complejas relaciones de trabajo y fuertes restricciones de tiempo y presupuesto. Si bien es cierto que la utilización de modelos de calidad ha contribuido en gran medida a mejorar la capacidad de producir software en las organizaciones, esas mejoras en la práctica se han concentrado en aspectos vinculados con la gestión de los proyectos y con menor énfasis en la mejora de la ingeniería de los productos, aun en niveles avanzados de madurez.
+
+Esta falta de foco en la ingeniería podría atribuirse a una mala interpretación de los modelos o a la minimización del impacto de los métodos en la calidad del producto. Dado el escenario que hemos planteado al inicio, se hace imprescindible que los procesos de desarrollo comiencen a enfocarse en las prácticas que mejor resuelvan
+la complejidad de los productos para asegurar que, además de la funcionalidad, se satisfacen adecuadamente los atributos de calidad que el software debe proveer.
+
+Estas prácticas de ingeniería adecuadamente integradas con las prácticas de gestión conforman procesos eficientes, eficaces y por sobre todo proactivos. En este artículo presentamos una visión que apunta a proveer una solución centrada en el diseño de la arquitectura como conductor del proceso de desarrollo, garantizando la calidad del producto y proactividad en todas y cada una de las etapas de fabricación e implantación.
+
+
+## Definición practica <a name="definicionPractica"></a>🚀
+
+Si bien no hay una definición consensada sobre lo que es un ciclo de vida guiado por la arquitectura, podemos decir que es un ciclo en donde los objetivos de negocios y los atributos de calidad del producto conducen el diseño de la arquitectura, y ésta es la base para la definición del resto del ciclo de producción y evolución a partir de:
+• Definir la estructura del proyecto (ciclos de vida, estimaciones, conformación de equipos, plan de comunicación, estrategia de configuration management, plan de pruebas, estrategia de integración e implantación del producto).
+• Definir la estrategia de integración entre proveedores.
+• Definir los mecanismos de coordinación entre grupos ubicados en diferentes locaciones.
+• Definir la estrategia de transferencia de conocimiento a grupos de mantenimiento.
+
+## Métodos prácticos para aplicar a un ciclo guiado por arquitecturas. 🚀
+El Software Engineering Institute (SEI) viene trabajando desde hace más de diez años en la definición de métodos para soportar los ciclos de vida guiados por la arquitectura. Son métodos prácticos que se sustentan en el uso de escenarios. Un escenario es una instancia concreta del uso del sistema y se compone de estimulo, elemento estimulado, resultado esperado en base a mediciones y el ambiente en donde el escenario se produce.
+
+### QAW <a name="qaw"></a>📋
+
+Es un taller (workshop) en donde se integran los diferentes involucrados para identificar los atributos de calidad que serán drivers del diseño de arquitectura del producto. QAW facilita la resolución temprana de conflictos, obtiene consensos entre los stakeholders y ayuda a mejorar los requerimientos a todos los niveles.
+
+### ATAM <a name="atam"></a>📋
+Es un método altamente estructurado para evaluar un diseño de arquitectura. ATAM permite detectar, de manera temprana, riesgos técnicos, conflictos entre atributos, puntos sensitivos del diseño y soluciones
+
+### Kata Aplicación <a name="kata"></a> 🔩
+![image](https://user-images.githubusercontent.com/26014448/165008183-e07bd3f7-6dab-44ce-bd7f-7c4efb219bdf.png)
+
+![image](https://user-images.githubusercontent.com/26014448/165008233-38ced707-d360-424c-993e-becd58b7aa12.png)
+
+[Tabla de Contenido](#indice)
+
+## Autores <a name="autor"></a>✒️
 
 _Participantes_
 
 * **Trabajo Base** - *Trabajo Inicial* - [David Castro](https://github.com/DavidCastro4444)
 
-## Licencia 📄
+## Licencia <a name="licencia"></a>📄
 
 Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
 
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢    
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
-
-
-
----
-⌨️ con ❤️ por [David Castro](https://github.com/DavidCastro4444) 😊
-
-
-
-
-## Autores ✒️
-
-_Participantes_
-
-* **Trabajo Base** - *Trabajo Inicial* - [David Castro](https://github.com/DavidCastro4444)
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
+## Expresiones de Gratitud <a name="gratitud"></a>🎁
 
 * Comenta a otros sobre este proyecto 📢    
 * Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
